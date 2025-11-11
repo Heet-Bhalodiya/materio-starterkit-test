@@ -21,6 +21,8 @@ import Logo from '@components/layout/shared/Logo'
 import useVerticalNav from '@menu/hooks/useVerticalNav'
 import { useSettings } from '@core/hooks/useSettings'
 
+// Util Imports
+
 // Style Imports
 import navigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
 
@@ -53,6 +55,7 @@ const Navigation = (props: Props) => {
   // Hooks
   const verticalNavOptions = useVerticalNav()
   const { updateSettings, settings } = useSettings()
+
   const { mode: muiMode, systemMode: muiSystemMode } = useColorScheme()
   const theme = useTheme()
 
@@ -108,7 +111,7 @@ const Navigation = (props: Props) => {
     >
       {/* Nav Header including Logo & nav toggle icons  */}
       <NavHeader>
-        <Link href='/'>
+        <Link href={'/'}>
           <Logo />
         </Link>
         {!(isCollapsed && !isHovered) && (

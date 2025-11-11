@@ -1,5 +1,7 @@
 'use client'
 
+// Type Imports
+
 // Component Imports
 import Navigation from './Navigation'
 import NavbarContent from './NavbarContent'

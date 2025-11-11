@@ -1,6 +1,8 @@
 // React Imports
 import type { ReactNode } from 'react'
 
+// Next Imports
+
 // MUI Imports
 import Chip from '@mui/material/Chip'
 import type { ChipProps } from '@mui/material/Chip'
@@ -19,6 +21,8 @@ import type {
 // Component Imports
 import { SubMenu as HorizontalSubMenu, MenuItem as HorizontalMenuItem } from '@menu/horizontal-menu'
 import { SubMenu as VerticalSubMenu, MenuItem as VerticalMenuItem, MenuSection } from '@menu/vertical-menu'
+
+// Util Imports
 
 // Generate a menu from the menu data array
 export const GenerateVerticalMenu = ({ menuData }: { menuData: VerticalMenuDataType[] }) => {
@@ -82,7 +86,6 @@ export const GenerateVerticalMenu = ({ menuData }: { menuData: VerticalMenuDataT
       const { label, icon, prefix, suffix, ...rest } = menuItem
 
       // Localize the href
-      const href = rest.href
 
       const Icon = icon ? <i className={icon} /> : null
 
@@ -98,7 +101,7 @@ export const GenerateVerticalMenu = ({ menuData }: { menuData: VerticalMenuDataT
           prefix={menuItemPrefix}
           suffix={menuItemSuffix}
           {...rest}
-          href={href}
+          href={menuItem.href}
           {...(Icon && { icon: Icon })}
         >
           {label}
@@ -158,7 +161,6 @@ export const GenerateHorizontalMenu = ({ menuData }: { menuData: HorizontalMenuD
       const { label, icon, prefix, suffix, ...rest } = menuItem
 
       // Localize the href
-      const href = rest.href
 
       const Icon = icon ? <i className={icon} /> : null
 
@@ -174,7 +176,7 @@ export const GenerateHorizontalMenu = ({ menuData }: { menuData: HorizontalMenuD
           prefix={menuItemPrefix}
           suffix={menuItemSuffix}
           {...rest}
-          href={href}
+          href={menuItem.href}
           {...(Icon && { icon: Icon })}
         >
           {label}

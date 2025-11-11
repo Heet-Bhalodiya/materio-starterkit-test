@@ -2,6 +2,8 @@
 import styled from '@emotion/styled'
 import classnames from 'classnames'
 
+// Type Imports
+
 // Component Imports
 import HorizontalMenu from './HorizontalMenu'
 
