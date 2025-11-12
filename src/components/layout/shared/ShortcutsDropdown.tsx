@@ -6,6 +6,7 @@ import type { ReactNode } from 'react'
 
 // Next Imports
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 // MUI Imports
 import IconButton from '@mui/material/IconButton'
@@ -25,6 +26,7 @@ import classnames from 'classnames'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Type Imports
+import type { Locale } from '@configs/i18n'
 
 // Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
@@ -36,6 +38,7 @@ import themeConfig from '@configs/themeConfig'
 import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
+import { getLocalizedUrl } from '@/utils/i18n'
 
 export type ShortcutsType = {
   url: string
@@ -68,6 +71,7 @@ const ShortcutsDropdown = ({ shortcuts }: { shortcuts: ShortcutsType[] }) => {
   const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   const { settings } = useSettings()
+  const { lang: locale } = useParams()
 
   const handleClose = useCallback(() => {
     setOpen(false)
@@ -155,7 +159,7 @@ const ShortcutsDropdown = ({ shortcuts }: { shortcuts: ShortcutsType[] }) => {
                           className='[&:not(:last-of-type):not(:nth-last-of-type(2))]:border-be odd:border-ie'
                         >
                           <Link
-                            href={shortcut.url}
+                            href={getLocalizedUrl(shortcut.url, locale as Locale)}
                             className='flex items-center flex-col p-6 gap-3 bs-full hover:bg-actionHover'
                           >
                             <CustomAvatar size={50} className='bg-actionSelected text-textPrimary'>

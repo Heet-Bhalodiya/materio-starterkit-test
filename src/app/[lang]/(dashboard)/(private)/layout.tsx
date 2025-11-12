@@ -3,6 +3,7 @@ import Button from '@mui/material/Button'
 
 // Type Imports
 import type { ChildrenType } from '@core/types'
+import type { Locale } from '@configs/i18n'
 
 // Layout Imports
 import LayoutWrapper from '@layouts/LayoutWrapper'
@@ -21,32 +22,42 @@ import ScrollToTop from '@core/components/scroll-to-top'
 import AuthGuard from '@/hocs/AuthGuard'
 
 // Config Imports
+import { i18n } from '@configs/i18n'
 
 // Util Imports
+import { getDictionary } from '@/utils/getDictionary'
 import { getMode, getSystemMode } from '@core/utils/serverHelpers'
 
-const Layout = async (props: ChildrenType) => {
+const Layout = async (props: ChildrenType & { params: Promise<{ lang: string }> }) => {
+  const params = await props.params
+
   const { children } = props
 
   // Type guard to ensure lang is a valid Locale
+  const lang: Locale = i18n.locales.includes(params.lang as Locale) ? (params.lang as Locale) : i18n.defaultLocale
 
   // Vars
-  const direction = 'ltr'
+  const direction = i18n.langDirection[lang]
+  const dictionary = await getDictionary(lang)
   const mode = await getMode()
   const systemMode = await getSystemMode()
 
   return (
     <Providers direction={direction}>
-      <AuthGuard>
+      <AuthGuard locale={lang}>
         <LayoutWrapper
           systemMode={systemMode}
           verticalLayout={
-            <VerticalLayout navigation={<Navigation mode={mode} />} navbar={<Navbar />} footer={<VerticalFooter />}>
+            <VerticalLayout
+              navigation={<Navigation dictionary={dictionary} mode={mode} />}
+              navbar={<Navbar />}
+              footer={<VerticalFooter />}
+            >
               {children}
             </VerticalLayout>
           }
           horizontalLayout={
-            <HorizontalLayout header={<Header />} footer={<HorizontalFooter />}>
+            <HorizontalLayout header={<Header dictionary={dictionary} />} footer={<HorizontalFooter />}>
               {children}
             </HorizontalLayout>
           }
@@ -59,7 +70,7 @@ const Layout = async (props: ChildrenType) => {
             <i className='ri-arrow-up-line' />
           </Button>
         </ScrollToTop>
-        <Customizer dir={direction} disableDirection />
+        <Customizer dir={direction} />
       </AuthGuard>
     </Providers>
   )

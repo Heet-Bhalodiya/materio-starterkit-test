@@ -16,7 +16,7 @@ import { useMedia } from 'react-use'
 import stylisRTLPlugin from 'stylis-plugin-rtl'
 
 // Type Imports
-import type { ChildrenType, Direction, SystemMode } from '@core/types'
+import type { ChildrenType, Direction, SystemMode, DemoName } from '@core/types'
 
 // Component Imports
 import ModeChanger from './ModeChanger'
@@ -33,6 +33,7 @@ import defaultCoreTheme from '@core/theme'
 type Props = ChildrenType & {
   direction: Direction
   systemMode: SystemMode
+  demoName: DemoName
 }
 
 const CustomThemeProvider = (props: Props) => {
@@ -105,7 +106,7 @@ const CustomThemeProvider = (props: Props) => {
       <ThemeProvider
         theme={theme}
         defaultMode={systemMode}
-        modeStorageKey={`${themeConfig.templateName.toLowerCase().split(' ').join('-')}-mui-template-mode`}
+        modeStorageKey={`${themeConfig.templateName.toLowerCase().split(' ').join('-')}-mui-template-mode-${props.demoName}`}
       >
         <>
           <ModeChanger systemMode={systemMode} />

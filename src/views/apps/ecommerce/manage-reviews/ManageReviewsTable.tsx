@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 // Next Imports
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 // MUI Imports
 import Card from '@mui/material/Card'
@@ -40,12 +41,14 @@ import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
 import type { ReviewType } from '@/types/apps/ecommerceTypes'
+import type { Locale } from '@configs/i18n'
 
 // Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
 import OptionMenu from '@core/components/option-menu'
 
 // Util Imports
+import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
@@ -117,6 +120,7 @@ const ManageReviewsTable = ({ reviewsData }: { reviewsData?: ReviewType[] }) => 
   const [globalFilter, setGlobalFilter] = useState('')
 
   // Hooks
+  const { lang: locale } = useParams()
 
   const columns = useMemo<ColumnDef<ReviewWithActionsType, any>[]>(
     () => [
@@ -166,7 +170,7 @@ const ManageReviewsTable = ({ reviewsData }: { reviewsData?: ReviewType[] }) => 
             <div className='flex flex-col items-start gap-0.5'>
               <Typography
                 component={Link}
-                href={'/apps/ecommerce/customers/details/879861'}
+                href={getLocalizedUrl('/apps/ecommerce/customers/details/879861', locale as Locale)}
                 color='primary.main'
                 className='font-medium'
               >
@@ -238,7 +242,7 @@ const ManageReviewsTable = ({ reviewsData }: { reviewsData?: ReviewType[] }) => 
               {
                 text: 'View',
                 icon: 'ri-eye-line',
-                href: '/apps/ecommerce/orders/details/5434',
+                href: getLocalizedUrl('/apps/ecommerce/orders/details/5434', locale as Locale),
                 linkProps: { className: 'flex items-center is-full gap-2 plb-1.5 pli-4' }
               },
               {

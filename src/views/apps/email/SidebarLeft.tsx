@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 
 // Next Imports
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 // MUI Imports
 import Drawer from '@mui/material/Drawer'
@@ -19,11 +20,13 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 // Types Imports
 import type { Email, EmailState } from '@/types/apps/emailTypes'
 import type { ThemeColor } from '@core/types'
+import type { Locale } from '@configs/i18n'
 
 // Components Imports
 import ComposeMail from './ComposeMail'
 
 // Util Imports
+import { getLocalizedUrl } from '@/utils/i18n'
 
 // Styles Imports
 import styles from './styles.module.css'
@@ -88,6 +91,7 @@ const SidebarLeft = (props: Props) => {
   const [openCompose, setOpenCompose] = useState(false)
 
   // Hooks
+  const { lang: locale } = useParams()
 
   const folderCounts = store.emails.reduce((counts: Record<string, number>, email: Email) => {
     if (!email.isRead && email.folder !== 'trash') {
@@ -128,7 +132,7 @@ const SidebarLeft = (props: Props) => {
             {Object.entries(icons).map(([key, value]) => (
               <Link
                 key={key}
-                href={`/apps/email/${key}`}
+                href={getLocalizedUrl(`/apps/email/${key}`, locale as Locale)}
                 prefetch
                 className={classnames(
                   'flex items-center justify-between plb-1 pli-5 gap-2.5 min-bs-8 bs-[32px] cursor-pointer',
@@ -164,7 +168,7 @@ const SidebarLeft = (props: Props) => {
               {uniqueLabels.map(labelName => (
                 <Link
                   key={labelName}
-                  href={`/apps/email/label/${labelName}`}
+                  href={getLocalizedUrl(`/apps/email/label/${labelName}`, locale as Locale)}
                   prefetch
                   className={classnames('flex items-center gap-x-2 pli-5 cursor-pointer', {
                     [styles.activeSidebarListItem]: labelName === label

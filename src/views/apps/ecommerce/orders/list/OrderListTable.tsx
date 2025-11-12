@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from 'react'
 
 // Next Imports
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 // MUI Imports
 import Card from '@mui/material/Card'
@@ -36,6 +37,7 @@ import type { RankingInfo } from '@tanstack/match-sorter-utils'
 // Type Imports
 import type { ThemeColor } from '@core/types'
 import type { OrderType } from '@/types/apps/ecommerceTypes'
+import type { Locale } from '@configs/i18n'
 
 // Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
@@ -43,6 +45,7 @@ import OptionMenu from '@core/components/option-menu'
 
 // Util Imports
 import { getInitials } from '@/utils/getInitials'
+import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
@@ -136,6 +139,7 @@ const OrderListTable = ({ orderData }: { orderData?: OrderType[] }) => {
   const [globalFilter, setGlobalFilter] = useState('')
 
   // Hooks
+  const { lang: locale } = useParams()
 
   // Vars
   const paypal = '/images/apps/ecommerce/paypal.png'
@@ -170,7 +174,7 @@ const OrderListTable = ({ orderData }: { orderData?: OrderType[] }) => {
         cell: ({ row }) => (
           <Typography
             component={Link}
-            href={`/apps/ecommerce/orders/details/${row.original.order}`}
+            href={getLocalizedUrl(`/apps/ecommerce/orders/details/${row.original.order}`, locale as Locale)}
             color='primary.main'
           >{`#${row.original.order}`}</Typography>
         )
@@ -189,7 +193,7 @@ const OrderListTable = ({ orderData }: { orderData?: OrderType[] }) => {
             <div className='flex flex-col'>
               <Typography
                 component={Link}
-                href={'/apps/ecommerce/customers/details/879861'}
+                href={getLocalizedUrl('/apps/ecommerce/customers/details/879861', locale as Locale)}
                 color='text.primary'
                 className='font-medium hover:text-primary'
               >
@@ -251,7 +255,7 @@ const OrderListTable = ({ orderData }: { orderData?: OrderType[] }) => {
                 {
                   text: 'View',
                   icon: 'ri-eye-line',
-                  href: `/apps/ecommerce/orders/details/${row.original.order}`,
+                  href: getLocalizedUrl(`/apps/ecommerce/orders/details/${row.original.order}`, locale as Locale),
                   linkProps: { className: 'flex items-center is-full gap-2 plb-2 pli-4' }
                 },
                 {

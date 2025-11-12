@@ -1,78 +1,79 @@
 // Type Imports
 import type { HorizontalMenuDataType } from '@/types/menuTypes'
+import type { getDictionary } from '@/utils/getDictionary'
 
-const horizontalMenuData = (): HorizontalMenuDataType[] => [
+const horizontalMenuData = (dictionary: Awaited<ReturnType<typeof getDictionary>>): HorizontalMenuDataType[] => [
   // This is how you will normally render submenu
   {
-    label: 'dashboards',
+    label: dictionary['navigation'].dashboards,
     icon: 'ri-home-smile-line',
     children: [
       // This is how you will normally render menu item
       {
-        label: 'crm',
+        label: dictionary['navigation'].crm,
         icon: 'ri-pie-chart-2-line',
         href: '/dashboards/crm'
       },
       {
-        label: 'analytics',
+        label: dictionary['navigation'].analytics,
         icon: 'ri-bar-chart-line',
         href: '/dashboards/analytics'
       },
       {
-        label: 'eCommerce',
+        label: dictionary['navigation'].eCommerce,
         icon: 'ri-shopping-bag-3-line',
         href: '/dashboards/ecommerce'
       },
       {
-        label: 'academy',
+        label: dictionary['navigation'].academy,
         icon: 'ri-graduation-cap-line',
         href: '/dashboards/academy'
       },
       {
-        label: 'logistics',
+        label: dictionary['navigation'].logistics,
         icon: 'ri-car-line',
         href: '/dashboards/logistics'
       }
     ]
   },
   {
-    label: 'apps',
+    label: dictionary['navigation'].apps,
     icon: 'ri-mail-open-line',
     children: [
       {
-        label: 'eCommerce',
+        label: dictionary['navigation'].eCommerce,
         icon: 'ri-shopping-bag-3-line',
         children: [
           {
-            label: 'dashboard',
+            label: dictionary['navigation'].dashboard,
             href: '/apps/ecommerce/dashboard'
           },
           {
-            label: 'products',
+            label: dictionary['navigation'].products,
             children: [
               {
-                label: 'list',
+                label: dictionary['navigation'].list,
                 href: '/apps/ecommerce/products/list'
               },
               {
-                label: 'add',
+                label: dictionary['navigation'].add,
                 href: '/apps/ecommerce/products/add'
               },
               {
-                label: 'category',
+                label: dictionary['navigation'].category,
                 href: '/apps/ecommerce/products/category'
               }
             ]
           },
           {
-            label: 'orders',
+            label: dictionary['navigation'].orders,
             children: [
               {
-                label: 'list',
+                label: dictionary['navigation'].list,
                 href: '/apps/ecommerce/orders/list'
               },
               {
-                label: 'details',
+                label: dictionary['navigation'].details,
                 href: '/apps/ecommerce/orders/details/5434',
                 exactMatch: false,
                 activeUrl: '/apps/ecommerce/orders/details'
@@ -80,14 +81,14 @@ const horizontalMenuData = (): HorizontalMenuDataType[] => [
             ]
           },
           {
-            label: 'customers',
+            label: dictionary['navigation'].customers,
             children: [
               {
-                label: 'list',
+                label: dictionary['navigation'].list,
                 href: '/apps/ecommerce/customers/list'
               },
               {
-                label: 'details',
+                label: dictionary['navigation'].details,
                 href: '/apps/ecommerce/customers/details/879861',
                 exactMatch: false,
                 activeUrl: '/apps/ecommerce/customers/details'
@@ -95,123 +96,123 @@ const horizontalMenuData = (): HorizontalMenuDataType[] => [
             ]
           },
           {
-            label: 'manageReviews',
+            label: dictionary['navigation'].manageReviews,
             href: '/apps/ecommerce/manage-reviews'
           },
           {
-            label: 'referrals',
+            label: dictionary['navigation'].referrals,
             href: '/apps/ecommerce/referrals'
           },
           {
-            label: 'settings',
+            label: dictionary['navigation'].settings,
             href: '/apps/ecommerce/settings'
           }
         ]
       },
       {
-        label: 'academy',
+        label: dictionary['navigation'].academy,
         icon: 'ri-graduation-cap-line',
         children: [
           {
-            label: 'dashboard',
+            label: dictionary['navigation'].dashboard,
             href: '/apps/academy/dashboard'
           },
           {
-            label: 'myCourses',
+            label: dictionary['navigation'].myCourses,
             href: '/apps/academy/my-courses'
           },
           {
-            label: 'courseDetails',
+            label: dictionary['navigation'].courseDetails,
             href: '/apps/academy/course-details'
           }
         ]
       },
       {
-        label: 'logistics',
+        label: dictionary['navigation'].logistics,
         icon: 'ri-car-line',
         children: [
           {
-            label: 'dashboard',
+            label: dictionary['navigation'].dashboard,
             href: '/apps/logistics/dashboard'
           },
           {
-            label: 'fleet',
+            label: dictionary['navigation'].fleet,
             href: '/apps/logistics/fleet'
           }
         ]
       },
       {
-        label: 'email',
+        label: dictionary['navigation'].email,
         icon: 'ri-mail-open-line',
         href: '/apps/email',
         exactMatch: false,
         activeUrl: '/apps/email'
       },
       {
-        label: 'chat',
+        label: dictionary['navigation'].chat,
         icon: 'ri-wechat-line',
         href: '/apps/chat'
       },
       {
-        label: 'calendar',
+        label: dictionary['navigation'].calendar,
         href: '/apps/calendar',
         icon: 'ri-calendar-line'
       },
       {
-        label: 'kanban',
+        label: dictionary['navigation'].kanban,
         icon: 'ri-drag-drop-line',
         href: '/apps/kanban'
       },
       {
-        label: 'invoice',
+        label: dictionary['navigation'].invoice,
         icon: 'ri-file-list-2-line',
         children: [
           {
-            label: 'list',
+            label: dictionary['navigation'].list,
             href: '/apps/invoice/list'
           },
           {
-            label: 'preview',
+            label: dictionary['navigation'].preview,
             href: '/apps/invoice/preview/4987',
             exactMatch: false,
             activeUrl: '/apps/invoice/preview'
           },
           {
-            label: 'edit',
+            label: dictionary['navigation'].edit,
             href: '/apps/invoice/edit/4987',
             exactMatch: false,
             activeUrl: '/apps/invoice/edit'
           },
           {
-            label: 'add',
+            label: dictionary['navigation'].add,
             href: '/apps/invoice/add'
           }
         ]
       },
       {
-        label: 'user',
+        label: dictionary['navigation'].user,
         icon: 'ri-user-line',
         children: [
           {
-            label: 'list',
+            label: dictionary['navigation'].list,
             href: '/apps/user/list'
           },
           {
-            label: 'view',
+            label: dictionary['navigation'].view,
             href: '/apps/user/view'
           }
         ]
       },
       {
-        label: 'rolesPermissions',
+        label: dictionary['navigation'].rolesPermissions,
         icon: 'ri-lock-line',
         children: [
           {
-            label: 'roles',
+            label: dictionary['navigation'].roles,
             href: '/apps/roles'
           },
           {
-            label: 'permissions',
+            label: dictionary['navigation'].permissions,
             href: '/apps/permissions'
           }
         ]
@@ -219,149 +220,149 @@ const horizontalMenuData = (): HorizontalMenuDataType[] => [
     ]
   },
   {
-    label: 'pages',
+    label: dictionary['navigation'].pages,
     icon: 'ri-file-list-2-line',
     children: [
       {
-        label: 'userProfile',
+        label: dictionary['navigation'].userProfile,
         icon: 'ri-user-3-line',
         href: '/pages/user-profile'
       },
       {
-        label: 'accountSettings',
+        label: dictionary['navigation'].accountSettings,
         icon: 'ri-user-settings-line',
         href: '/pages/account-settings'
       },
       {
-        label: 'faq',
+        label: dictionary['navigation'].faq,
         icon: 'ri-question-line',
         href: '/pages/faq'
       },
       {
-        label: 'pricing',
+        label: dictionary['navigation'].pricing,
         icon: 'ri-money-dollar-circle-line',
         href: '/pages/pricing'
       },
       {
-        label: 'miscellaneous',
+        label: dictionary['navigation'].miscellaneous,
         icon: 'ri-file-info-line',
         children: [
           {
-            label: 'comingSoon',
+            label: dictionary['navigation'].comingSoon,
             href: '/pages/misc/coming-soon',
             target: '_blank'
           },
           {
-            label: 'underMaintenance',
+            label: dictionary['navigation'].underMaintenance,
             href: '/pages/misc/under-maintenance',
             target: '_blank'
           },
           {
-            label: 'pageNotFound404',
+            label: dictionary['navigation'].pageNotFound404,
             href: '/pages/misc/404-not-found',
             target: '_blank'
           },
           {
-            label: 'notAuthorized401',
+            label: dictionary['navigation'].notAuthorized401,
             href: '/pages/misc/401-not-authorized',
             target: '_blank'
           }
         ]
       },
       {
-        label: 'authPages',
+        label: dictionary['navigation'].authPages,
         icon: 'ri-shield-keyhole-line',
         children: [
           {
-            label: 'login',
+            label: dictionary['navigation'].login,
             children: [
               {
-                label: 'loginV1',
+                label: dictionary['navigation'].loginV1,
                 href: '/pages/auth/login-v1',
                 target: '_blank'
               },
               {
-                label: 'loginV2',
+                label: dictionary['navigation'].loginV2,
                 href: '/pages/auth/login-v2',
                 target: '_blank'
               }
             ]
           },
           {
-            label: 'register',
+            label: dictionary['navigation'].register,
             children: [
               {
-                label: 'registerV1',
+                label: dictionary['navigation'].registerV1,
                 href: '/pages/auth/register-v1',
                 target: '_blank'
               },
               {
-                label: 'registerV2',
+                label: dictionary['navigation'].registerV2,
                 href: '/pages/auth/register-v2',
                 target: '_blank'
               },
               {
-                label: 'registerMultiSteps',
+                label: dictionary['navigation'].registerMultiSteps,
                 href: '/pages/auth/register-multi-steps',
                 target: '_blank'
               }
             ]
           },
           {
-            label: 'verifyEmail',
+            label: dictionary['navigation'].verifyEmail,
             children: [
               {
-                label: 'verifyEmailV1',
+                label: dictionary['navigation'].verifyEmailV1,
                 href: '/pages/auth/verify-email-v1',
                 target: '_blank'
               },
               {
-                label: 'verifyEmailV2',
+                label: dictionary['navigation'].verifyEmailV2,
                 href: '/pages/auth/verify-email-v2',
                 target: '_blank'
               }
             ]
           },
           {
-            label: 'forgotPassword',
+            label: dictionary['navigation'].forgotPassword,
             children: [
               {
-                label: 'forgotPasswordV1',
+                label: dictionary['navigation'].forgotPasswordV1,
                 href: '/pages/auth/forgot-password-v1',
                 target: '_blank'
               },
               {
-                label: 'forgotPasswordV2',
+                label: dictionary['navigation'].forgotPasswordV2,
                 href: '/pages/auth/forgot-password-v2',
                 target: '_blank'
               }
             ]
           },
           {
-            label: 'resetPassword',
+            label: dictionary['navigation'].resetPassword,
             children: [
               {
-                label: 'resetPasswordV1',
+                label: dictionary['navigation'].resetPasswordV1,
                 href: '/pages/auth/reset-password-v1',
                 target: '_blank'
               },
               {
-                label: 'resetPasswordV2',
+                label: dictionary['navigation'].resetPasswordV2,
                 href: '/pages/auth/reset-password-v2',
                 target: '_blank'
               }
             ]
           },
           {
-            label: 'twoSteps',
+            label: dictionary['navigation'].twoSteps,
             children: [
               {
-                label: 'twoStepsV1',
+                label: dictionary['navigation'].twoStepsV1,
                 href: '/pages/auth/two-steps-v1',
                 target: '_blank'
               },
               {
-                label: 'twoStepsV2',
+                label: dictionary['navigation'].twoStepsV2,
                 href: '/pages/auth/two-steps-v2',
                 target: '_blank'
               }
@@ -370,124 +371,129 @@ const horizontalMenuData = (): HorizontalMenuDataType[] => [
         ]
       },
       {
-        label: 'wizardExamples',
+        label: dictionary['navigation'].wizardExamples,
         icon: 'ri-git-commit-line',
         children: [
           {
-            label: 'checkout',
+            label: dictionary['navigation'].checkout,
             href: '/pages/wizard-examples/checkout'
           },
           {
-            label: 'propertyListing',
+            label: dictionary['navigation'].propertyListing,
             href: '/pages/wizard-examples/property-listing'
           },
           {
-            label: 'createDeal',
+            label: dictionary['navigation'].createDeal,
             href: '/pages/wizard-examples/create-deal'
           }
         ]
       },
       {
-        label: 'dialogExamples',
+        label: dictionary['navigation'].dialogExamples,
         icon: 'ri-tv-2-line',
         href: '/pages/dialog-examples'
       },
       {
-        label: 'widgetExamples',
+        label: dictionary['navigation'].widgetExamples,
         icon: 'ri-bar-chart-box-line',
         children: [
           {
-            label: 'basic',
+            label: dictionary['navigation'].basic,
             href: '/pages/widget-examples/basic'
           },
           {
-            label: 'advanced',
+            label: dictionary['navigation'].advanced,
             href: '/pages/widget-examples/advanced'
           },
           {
-            label: 'statistics',
+            label: dictionary['navigation'].statistics,
             href: '/pages/widget-examples/statistics'
           },
           {
-            label: 'charts',
+            label: dictionary['navigation'].charts,
             href: '/pages/widget-examples/charts'
           },
           {
-            label: 'gamification',
+            label: dictionary['navigation'].gamification,
             href: '/pages/widget-examples/gamification'
           },
           {
-            label: 'actions',
+            label: dictionary['navigation'].actions,
             href: '/pages/widget-examples/actions'
           }
         ]
       },
       {
-        label: 'frontPages',
+        label: dictionary['navigation'].frontPages,
         icon: 'ri-file-copy-line',
         children: [
           {
-            label: 'landing',
+            label: dictionary['navigation'].landing,
             href: '/front-pages/landing-page',
-            target: '_blank'
+            target: '_blank',
+            excludeLang: true
           },
           {
-            label: 'pricing',
+            label: dictionary['navigation'].pricing,
             href: '/front-pages/pricing',
-            target: '_blank'
+            target: '_blank',
+            excludeLang: true
           },
           {
-            label: 'payment',
+            label: dictionary['navigation'].payment,
             href: '/front-pages/payment',
-            target: '_blank'
+            target: '_blank',
+            excludeLang: true
           },
           {
-            label: 'checkout',
+            label: dictionary['navigation'].checkout,
             href: '/front-pages/checkout',
-            target: '_blank'
+            target: '_blank',
+            excludeLang: true
           },
           {
-            label: 'helpCenter',
+            label: dictionary['navigation'].helpCenter,
             href: '/front-pages/help-center',
-            target: '_blank'
+            target: '_blank',
+            excludeLang: true
           }
         ]
       }
     ]
   },
   {
-    label: 'formsAndTables',
+    label: dictionary['navigation'].formsAndTables,
     icon: 'ri-pages-line',
     children: [
       {
-        label: 'formLayouts',
+        label: dictionary['navigation'].formLayouts,
         icon: 'ri-layout-4-line',
         href: '/forms/form-layouts'
       },
       {
-        label: 'formValidation',
+        label: dictionary['navigation'].formValidation,
         icon: 'ri-checkbox-multiple-line',
         href: '/forms/form-validation'
       },
       {
-        label: 'formWizard',
+        label: dictionary['navigation'].formWizard,
         icon: 'ri-git-commit-line',
         href: '/forms/form-wizard'
       },
       {
-        label: 'reactTable',
+        label: dictionary['navigation'].reactTable,
         icon: 'ri-table-alt-line',
         href: '/react-table'
       },
       {
-        label: 'formELements',
+        label: dictionary['navigation'].formELements,
         icon: 'ri-radio-button-line',
         suffix: <i className='ri-external-link-line text-xl' />,
         href: `${process.env.NEXT_PUBLIC_DOCS_URL}/docs/user-interface/form-elements`,
         target: '_blank'
       },
       {
-        label: 'muiTables',
+        label: dictionary['navigation'].muiTables,
         icon: 'ri-table-2',
         href: `${process.env.NEXT_PUBLIC_DOCS_URL}/docs/user-interface/mui-table`,
         suffix: <i className='ri-external-link-line text-xl' />,
@@ -496,55 +502,55 @@ const horizontalMenuData = (): HorizontalMenuDataType[] => [
     ]
   },
   {
-    label: 'charts',
+    label: dictionary['navigation'].charts,
     icon: 'ri-bar-chart-2-line',
     children: [
       {
-        label: 'apex',
+        label: dictionary['navigation'].apex,
         icon: 'ri-line-chart-line',
         href: '/charts/apex-charts'
       },
       {
-        label: 'recharts',
+        label: dictionary['navigation'].recharts,
         icon: 'ri-bar-chart-line',
         href: '/charts/recharts'
       }
     ]
   },
   {
-    label: 'others',
+    label: dictionary['navigation'].others,
     icon: 'ri-more-line',
     children: [
       {
-        label: 'foundation',
+        label: dictionary['navigation'].foundation,
         icon: 'ri-pantone-line',
         href: `${process.env.NEXT_PUBLIC_DOCS_URL}/docs/user-interface/foundation`,
         suffix: <i className='ri-external-link-line text-xl' />,
         target: '_blank'
       },
       {
-        label: 'components',
+        label: dictionary['navigation'].components,
         icon: 'ri-toggle-line',
         href: `${process.env.NEXT_PUBLIC_DOCS_URL}/docs/user-interface/components`,
         suffix: <i className='ri-external-link-line text-xl' />,
         target: '_blank'
       },
       {
-        label: 'menuExamples',
+        label: dictionary['navigation'].menuExamples,
         icon: 'ri-menu-search-line',
         href: `${process.env.NEXT_PUBLIC_DOCS_URL}/docs/menu-examples/overview`,
         suffix: <i className='ri-external-link-line text-xl' />,
         target: '_blank'
       },
       {
-        label: 'raiseSupport',
+        label: dictionary['navigation'].raiseSupport,
         icon: 'ri-lifebuoy-line',
         href: 'https://themeselection.com/support',
         suffix: <i className='ri-external-link-line text-xl' />,
         target: '_blank'
       },
       {
-        label: 'documentation',
+        label: dictionary['navigation'].documentation,
         icon: 'ri-book-line',
         href: `${process.env.NEXT_PUBLIC_DOCS_URL}`,
         suffix: <i className='ri-external-link-line text-xl' />,
@@ -555,38 +561,38 @@ const horizontalMenuData = (): HorizontalMenuDataType[] => [
           label: 'New',
           color: 'info'
         },
-        label: 'itemWithBadge',
+        label: dictionary['navigation'].itemWithBadge,
         icon: 'ri-notification-badge-line'
       },
       {
-        label: 'externalLink',
+        label: dictionary['navigation'].externalLink,
         icon: 'ri-link',
         href: 'https://themeselection.com',
         target: '_blank',
         suffix: <i className='ri-external-link-line text-xl' />
       },
       {
-        label: 'menuLevels',
+        label: dictionary['navigation'].menuLevels,
         icon: 'ri-menu-2-line',
         children: [
           {
-            label: 'menuLevel2'
+            label: dictionary['navigation'].menuLevel2
           },
           {
-            label: 'menuLevel2',
+            label: dictionary['navigation'].menuLevel2,
             children: [
               {
-                label: 'menuLevel3'
+                label: dictionary['navigation'].menuLevel3
               },
               {
-                label: 'menuLevel3'
+                label: dictionary['navigation'].menuLevel3
               }
             ]
           }
         ]
       },
       {
-        label: 'disabledMenu',
+        label: dictionary['navigation'].disabledMenu,
         disabled: true
       }
     ]

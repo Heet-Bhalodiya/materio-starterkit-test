@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 // Next Imports
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 // MUI Imports
 import Card from '@mui/material/Card'
@@ -17,6 +18,7 @@ import Button from '@mui/material/Button'
 
 // Type Imports
 import type { Mode } from '@core/types'
+import type { Locale } from '@configs/i18n'
 
 // Component Imports
 import DirectionalIcon from '@components/DirectionalIcon'
@@ -27,6 +29,7 @@ import Illustrations from '@components/Illustrations'
 import { useImageVariant } from '@core/hooks/useImageVariant'
 
 // Util Imports
+import { getLocalizedUrl } from '@/utils/i18n'
 
 const ResetPasswordV1 = ({ mode }: { mode: Mode }) => {
   // States
@@ -38,7 +41,7 @@ const ResetPasswordV1 = ({ mode }: { mode: Mode }) => {
   const lightImg = '/images/pages/auth-v1-mask-light.png'
 
   // Hooks
-
+  const { lang: locale } = useParams()
   const authBackground = useImageVariant(mode, lightImg, darkImg)
 
   const handleClickShowPassword = () => setIsPasswordShown(show => !show)
@@ -49,7 +52,7 @@ const ResetPasswordV1 = ({ mode }: { mode: Mode }) => {
     <div className='flex flex-col justify-center items-center min-bs-[100dvh] relative p-6'>
       <Card className='flex flex-col sm:is-[450px]'>
         <CardContent className='p-6 sm:!p-12'>
-          <Link href={'/'} className='flex justify-center items-center mbe-6'>
+          <Link href={getLocalizedUrl('/', locale as Locale)} className='flex justify-center items-center mbe-6'>
             <Logo />
           </Link>
           <Typography variant='h4'>Reset Password 🔒</Typography>
@@ -105,7 +108,10 @@ const ResetPasswordV1 = ({ mode }: { mode: Mode }) => {
                 Set New Password
               </Button>
               <Typography className='flex justify-center items-center' color='primary.main'>
-                <Link href={'/pages/auth/login-v1'} className='flex items-center gap-1.5'>
+                <Link
+                  href={getLocalizedUrl('/pages/auth/login-v1', locale as Locale)}
+                  className='flex items-center gap-1.5'
+                >
                   <DirectionalIcon
                     ltrIconClass='ri-arrow-left-s-line'
                     rtlIconClass='ri-arrow-right-s-line'

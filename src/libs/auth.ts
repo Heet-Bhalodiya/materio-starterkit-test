@@ -122,6 +122,11 @@ export const authOptions: NextAuthOptions = {
       }
 
       return session
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith('/')) return `${baseUrl}${url}`
+
+      return url
     }
   }
 }

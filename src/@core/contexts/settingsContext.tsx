@@ -5,10 +5,11 @@ import type { ReactNode } from 'react'
 import { createContext, useMemo, useState } from 'react'
 
 // Type Imports
-import type { Mode, Skin, Layout, LayoutComponentWidth } from '@core/types'
+import type { DemoName, Mode, Skin, Layout, LayoutComponentWidth } from '@core/types'
 
 // Config Imports
 import themeConfig from '@configs/themeConfig'
+import demoConfigs from '@configs/demoConfigs'
 import primaryColorConfig from '@configs/primaryColorConfig'
 
 // Hook Imports
@@ -41,6 +42,7 @@ type SettingsContextProps = {
 }
 
 type Props = {
+  demoName?: DemoName
   children: ReactNode
   settingsCookie: Settings | null
   mode?: Mode
@@ -51,6 +53,9 @@ export const SettingsContext = createContext<SettingsContextProps | null>(null)
 
 // Settings Provider
 export const SettingsProvider = (props: Props) => {
+  const demoName = props.demoName || null
+  const demoConfigurations = demoName ? demoConfigs[demoName] : {}
+
   // Initial Settings
   const initialSettings: Settings = {
     mode: themeConfig.mode,
@@ -60,17 +65,18 @@ export const SettingsProvider = (props: Props) => {
     navbarContentWidth: themeConfig.navbar.contentWidth,
     contentWidth: themeConfig.contentWidth,
     footerContentWidth: themeConfig.footer.contentWidth,
-    primaryColor: primaryColorConfig[0].main
+    primaryColor: primaryColorConfig[0].main,
+...(demoName && demoConfigurations)
   }
 
   const updatedInitialSettings = {
     ...initialSettings,
-    mode: props.mode || themeConfig.mode
+    mode: props.mode  || (demoName && demoConfigurations.mode)|| themeConfig.mode
   }
 
   // Cookies
   const [settingsCookie, updateSettingsCookie] = useObjectCookie<Settings>(
-    themeConfig.settingsCookieName,
+    demoName ? themeConfig.settingsCookieName.replace('demo-1', demoName) : themeConfig.settingsCookieName,
     JSON.stringify(props.settingsCookie) !== '{}' ? props.settingsCookie : updatedInitialSettings
   )
 

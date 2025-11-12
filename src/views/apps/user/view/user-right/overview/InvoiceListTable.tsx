@@ -6,6 +6,7 @@ import type { MouseEvent } from 'react'
 
 // Next Imports
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 // MUI Imports
 import Card from '@mui/material/Card'
@@ -39,12 +40,14 @@ import type { RankingInfo } from '@tanstack/match-sorter-utils'
 // Type Imports
 import type { ThemeColor } from '@core/types'
 import type { InvoiceType } from '@/types/apps/invoiceTypes'
+import type { Locale } from '@configs/i18n'
 
 // Component Imports
 import OptionMenu from '@core/components/option-menu'
 import CustomAvatar from '@core/components/mui/Avatar'
 
 // Util Imports
+import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
@@ -106,6 +109,7 @@ const InvoiceListTable = ({ invoiceData }: { invoiceData?: InvoiceType[] }) => {
   const open = Boolean(anchorEl)
 
   // Hooks
+  const { lang: locale } = useParams()
 
   const columns = useMemo<ColumnDef<InvoiceTypeWithAction, any>[]>(
     () => [
@@ -114,7 +118,7 @@ const InvoiceListTable = ({ invoiceData }: { invoiceData?: InvoiceType[] }) => {
         cell: ({ row }) => (
           <Typography
             component={Link}
-            href={`/apps/invoice/preview/${row.original.id}`}
+            href={getLocalizedUrl(`/apps/invoice/preview/${row.original.id}`, locale as Locale)}
             color='primary.main'
           >{`#${row.original.id}`}</Typography>
         )
@@ -163,7 +167,10 @@ const InvoiceListTable = ({ invoiceData }: { invoiceData?: InvoiceType[] }) => {
               <i className='ri-delete-bin-7-line text-textSecondary' />
             </IconButton>
             <IconButton>
-              <Link href={`/apps/invoice/preview/${row.original.id}`} className='flex'>
+              <Link
+                href={getLocalizedUrl(`/apps/invoice/preview/${row.original.id}`, locale as Locale)}
+                className='flex'
+              >
                 <i className='ri-eye-line text-textSecondary' />
               </Link>
             </IconButton>
@@ -179,7 +186,7 @@ const InvoiceListTable = ({ invoiceData }: { invoiceData?: InvoiceType[] }) => {
                 {
                   text: 'Edit',
                   icon: 'ri-pencil-line',
-                  href: `/apps/invoice/edit/${row.original.id}`,
+                  href: getLocalizedUrl(`/apps/invoice/edit/${row.original.id}`, locale as Locale),
                   linkProps: {
                     className: classnames('flex items-center bs-[40px] plb-2 pli-4 is-full gap-2 text-textSecondary')
                   }
