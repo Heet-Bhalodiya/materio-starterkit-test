@@ -21,9 +21,12 @@ const TranslationWrapper = (
 
   // ℹ️ This doesn't mean MISSING, it means INVALID
   const isInvalidLang = invalidLangs.includes(props.lang)
-const redirectPrefix = process.env.NEXT_PUBLIC_APP_URL!.replace(
-'demo-1',
-props.headersList.get('X-server-header') ?? 'demo-1')
+
+  const redirectPrefix = process.env.NEXT_PUBLIC_APP_URL!.replace(
+    'demo-1',
+    props.headersList.get('X-server-header') ?? 'demo-1')
+
+
   return doesLangExist || isInvalidLang ? props.children : <LangRedirect redirectPrefix={redirectPrefix} />
 }
 
