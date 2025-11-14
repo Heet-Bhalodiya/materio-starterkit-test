@@ -35,7 +35,7 @@ const Layout = async ({ children }: ChildrenType) => {
     <html id='__next' suppressHydrationWarning>
       <body className='flex is-full min-bs-full flex-auto flex-col'>
         <InitColorSchemeScript attribute='data' defaultMode='light' />
-        <Providers direction='ltr'>
+        <Providers direction='ltr' basePath={process.env.NEXTAUTH_BASEPATH}>
           <BlankLayout>
             <IntersectionProvider>
               <FrontLayout>

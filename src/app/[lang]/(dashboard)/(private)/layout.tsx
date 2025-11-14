@@ -40,7 +40,7 @@ const Layout = async (props: ChildrenType & { params: Promise<{ lang: string }> 
   const dictionary = await getDictionary(lang)
 
   return (
-    <Providers direction={direction}>
+    <Providers direction={direction} basePath={process.env.NEXTAUTH_BASEPATH}>
       <AuthGuard locale={lang}>
         <LayoutWrapper
           verticalLayout={

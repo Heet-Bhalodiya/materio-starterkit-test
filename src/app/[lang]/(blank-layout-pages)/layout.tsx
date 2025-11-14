@@ -24,7 +24,7 @@ const Layout = async (props: Props) => {
   const direction = i18n.langDirection[lang]
 
   return (
-    <Providers direction={direction}>
+    <Providers direction={direction} basePath={process.env.NEXTAUTH_BASEPATH}>
       <BlankLayout>{children}</BlankLayout>
     </Providers>
   )

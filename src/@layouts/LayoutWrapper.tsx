@@ -2,6 +2,10 @@
 
 // React Imports
 import type { ReactElement } from 'react'
+import { useEffect, useState } from 'react'
+
+// Type Imports
+import type { SystemMode } from '@core/types'
 
 // Hook Imports
 import { useSettings } from '@core/hooks/useSettings'
@@ -18,8 +22,20 @@ const LayoutWrapper = (props: LayoutWrapperProps) => {
 
   // Hooks
   const { settings } = useSettings()
+  const [systemMode, setSystemMode] = useState<SystemMode>('light')
 
-  useLayoutInit('light')
+  // Detect system mode on client-side
+  useEffect(() => {
+    if (settings.mode === 'system') {
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+      setSystemMode(isDark ? 'dark' : 'light')
+    } else {
+      setSystemMode(settings.mode as SystemMode)
+    }
+  }, [settings.mode])
+
+  useLayoutInit(systemMode)
 
   // Return the layout based on the layout context
   return (

@@ -36,7 +36,6 @@ export function generateStaticParams() {
   }))
 }
 
-
 const RootLayout = async (props: ChildrenType & { params: Promise<{ lang: string }> }) => {
   const params = await props.params
 
