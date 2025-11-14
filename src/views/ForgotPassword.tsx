@@ -13,7 +13,6 @@ import Button from '@mui/material/Button'
 import classnames from 'classnames'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -27,7 +26,7 @@ import { useSettings } from '@core/hooks/useSettings'
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
 
-const ForgotPasswordV2 = ({ mode }: { mode: Mode }) => {
+const ForgotPasswordV2 = () => {
   // Vars
   const darkImg = '/images/pages/auth-v2-mask-dark.png'
   const lightImg = '/images/pages/auth-v2-mask-light.png'
@@ -38,11 +37,11 @@ const ForgotPasswordV2 = ({ mode }: { mode: Mode }) => {
 
   // Hooks
   const { lang: locale } = useParams()
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
   const { settings } = useSettings()
+  const authBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   const characterIllustration = useImageVariant(
-    mode,
+    settings.mode || 'light',
     lightIllustration,
     darkIllustration,
     borderedLightIllustration,

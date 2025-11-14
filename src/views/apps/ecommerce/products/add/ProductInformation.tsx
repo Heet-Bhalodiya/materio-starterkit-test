@@ -143,7 +143,9 @@ const EditorToolbar = ({ editor }: { editor: Editor | null }) => {
 const ProductInformation = () => {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        underline: false
+      }),
       Placeholder.configure({
         placeholder: 'Write something here...'
       }),

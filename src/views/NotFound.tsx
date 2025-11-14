@@ -9,7 +9,6 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -17,18 +16,20 @@ import Illustrations from '@components/Illustrations'
 
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'
+import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
 
-const NotFound = ({ mode }: { mode: Mode }) => {
+const NotFound = () => {
   // Vars
   const darkImg = '/images/pages/misc-mask-dark.png'
   const lightImg = '/images/pages/misc-mask-light.png'
 
   // Hooks
   const { lang: locale } = useParams()
-  const miscBackground = useImageVariant(mode, lightImg, darkImg)
+  const { settings } = useSettings()
+  const miscBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   return (
     <div className='flex items-center justify-center min-bs-[100dvh] relative p-6 overflow-x-hidden'>

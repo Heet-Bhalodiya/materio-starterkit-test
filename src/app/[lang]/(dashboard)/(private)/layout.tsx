@@ -26,7 +26,6 @@ import { i18n } from '@configs/i18n'
 
 // Util Imports
 import { getDictionary } from '@/utils/getDictionary'
-import { getMode, getSystemMode } from '@core/utils/serverHelpers'
 
 const Layout = async (props: ChildrenType & { params: Promise<{ lang: string }> }) => {
   const params = await props.params
@@ -39,17 +38,14 @@ const Layout = async (props: ChildrenType & { params: Promise<{ lang: string }> 
   // Vars
   const direction = i18n.langDirection[lang]
   const dictionary = await getDictionary(lang)
-  const mode = await getMode()
-  const systemMode = await getSystemMode()
 
   return (
     <Providers direction={direction}>
       <AuthGuard locale={lang}>
         <LayoutWrapper
-          systemMode={systemMode}
           verticalLayout={
             <VerticalLayout
-              navigation={<Navigation dictionary={dictionary} mode={mode} />}
+              navigation={<Navigation dictionary={dictionary} />}
               navbar={<Navbar />}
               footer={<VerticalFooter />}
             >

@@ -9,9 +9,6 @@ import NotFound from '@views/NotFound'
 // Config Imports
 import { i18n } from '@configs/i18n'
 
-// Util Imports
-import { getSystemMode, getServerMode } from '@core/utils/serverHelpers'
-
 const NotFoundPage = async (props: { params: Promise<{ lang: string }> }) => {
   const params = await props.params
 
@@ -20,13 +17,11 @@ const NotFoundPage = async (props: { params: Promise<{ lang: string }> }) => {
 
   // Vars
   const direction = i18n.langDirection[lang]
-  const systemMode = await getSystemMode()
-  const mode = await getServerMode()
 
   return (
     <Providers direction={direction}>
-      <BlankLayout systemMode={systemMode}>
-        <NotFound mode={mode} />
+      <BlankLayout>
+        <NotFound />
       </BlankLayout>
     </Providers>
   )

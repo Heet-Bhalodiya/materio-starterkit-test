@@ -18,7 +18,6 @@ import type { SlotProps } from 'input-otp'
 import classnames from 'classnames'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -29,6 +28,7 @@ import Logo from '@components/layout/shared/Logo'
 
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'
+import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
@@ -53,7 +53,7 @@ const FakeCaret = () => {
   )
 }
 
-const TwoStepsV1 = ({ mode }: { mode: Mode }) => {
+const TwoStepsV1 = () => {
   // States
   const [otp, setOtp] = useState<string | null>(null)
 
@@ -63,7 +63,8 @@ const TwoStepsV1 = ({ mode }: { mode: Mode }) => {
 
   // Hooks
   const { lang: locale } = useParams()
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
+  const { settings } = useSettings()
+  const authBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   return (
     <div className='flex flex-col justify-center items-center min-bs-[100dvh] relative p-6'>

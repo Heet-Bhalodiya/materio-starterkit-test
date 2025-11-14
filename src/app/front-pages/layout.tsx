@@ -18,9 +18,6 @@ import FrontLayout from '@components/layout/front-pages'
 import BuyNowButton from '@components/buy-now-button'
 import ScrollToTop from '@core/components/scroll-to-top'
 
-// Util Imports
-import { getSystemMode } from '@core/utils/serverHelpers'
-
 // Style Imports
 import '@/app/globals.css'
 
@@ -34,15 +31,12 @@ export const metadata = {
 }
 
 const Layout = async ({ children }: ChildrenType) => {
-  // Vars
-  const systemMode = await getSystemMode()
-
   return (
     <html id='__next' suppressHydrationWarning>
       <body className='flex is-full min-bs-full flex-auto flex-col'>
-        <InitColorSchemeScript attribute='data' defaultMode={systemMode} />
+        <InitColorSchemeScript attribute='data' defaultMode='light' />
         <Providers direction='ltr'>
-          <BlankLayout systemMode={systemMode}>
+          <BlankLayout>
             <IntersectionProvider>
               <FrontLayout>
                 {children}

@@ -20,5 +20,3 @@ export type ChildrenType = {
 }
 
 export type ThemeColor = 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success'
-
-export type DemoName = 'demo-1' | 'demo-2' | 'demo-3' | 'demo-4' | 'demo-5' | 'demo-6' | null

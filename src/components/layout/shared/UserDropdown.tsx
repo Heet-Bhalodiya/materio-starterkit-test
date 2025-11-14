@@ -75,12 +75,7 @@ const UserDropdown = () => {
   const handleUserLogout = async () => {
     try {
       // Sign out from the app
-      const originURL = window.origin
-      const localizedLoginURL = getLocalizedUrl('/login', locale as Locale)
-      const basePath = process.env.NEXT_PUBLIC_BASEPATH ?? ''
-      const callbackUrl = `${originURL}${basePath}${localizedLoginURL}`
-
-      await signOut({ callbackUrl })
+      await signOut({ callbackUrl: process.env.NEXT_PUBLIC_APP_URL })
     } catch (error) {
       console.error(error)
 

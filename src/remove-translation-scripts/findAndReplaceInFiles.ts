@@ -22,7 +22,7 @@ const replaceDirectionPattern = /const direction\s*=\s*i18n.langDirection\[lang\
 const removeDictionaryDestructuringPattern = /dictionary(,| )/g
 
 // Pattern to match Props type definitions including `params`
-const removeParamsFromPropsPattern = /&\s*{\s*params:\s*Promise<{\slang:\s*Locale\s*}>\s*}/g
+const removeParamsFromPropsPattern = /&\s*{\s*params:\s*Promise<{\slang:\s*string\s*}>\s*}/g
 
 const removeParamsFromFunctionPattern = /(?<={ .*)params,?(?=.* }: [A-Z][A-Za-z]+)/g
 
@@ -64,9 +64,10 @@ async function replacePatternInFile(filePath: string) {
       .replace(/,\s*(\w+: )?locale/g, '')
       .replace(/\{ lang \}(: \{ lang: Locale \})?/g, '')
       .replace(/\${lang}\//g, '')
-      .replace(/props: \{ params: Promise<\{ lang: Locale \}> \}/gm, '')
+      .replace(/props: \{ params: Promise<\{ lang: string \}> \}/gm, '')
       .replace(/excludeLang\??:\s.*,?/g, '')
       .replace(/item\.excludeLang.*?:/, '')
+      .replace(/const lang: Locale =.*/, '')
 
     // Only write back if changes were made
     if (data !== newData) {

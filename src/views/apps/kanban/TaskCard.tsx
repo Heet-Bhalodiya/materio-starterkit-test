@@ -101,7 +101,7 @@ const TaskCard = (props: TaskCardProps) => {
     <>
       <Card
         className={classnames(
-          'item-draggable is-[16.5rem] cursor-grab active:cursor-grabbing overflow-visible mbe-4',
+          'item-draggable is-[16.5rem] cursor-grab active:cursor-grabbing overflow-visible mbe-4 z-0',
           styles.card
         )}
         onClick={() => handleTaskClick()}

@@ -15,6 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import Divider from '@mui/material/Divider'
 import Alert from '@mui/material/Alert'
 
 // Third-party Imports
@@ -27,7 +28,6 @@ import type { SubmitHandler } from 'react-hook-form'
 import type { InferInput } from 'valibot'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -59,7 +59,7 @@ const schema = object({
   )
 })
 
-const Login = ({ mode }: { mode: Mode }) => {
+const Login = () => {
   // States
   const [isPasswordShown, setIsPasswordShown] = useState(false)
   const [errorState, setErrorState] = useState<ErrorType | null>(null)
@@ -90,10 +90,10 @@ const Login = ({ mode }: { mode: Mode }) => {
     }
   })
 
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
+  const authBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   const characterIllustration = useImageVariant(
-    mode,
+    settings.mode || 'light',
     lightIllustration,
     darkIllustration,
     borderedLightIllustration,
@@ -243,6 +243,16 @@ const Login = ({ mode }: { mode: Mode }) => {
               </Typography>
             </div>
           </form>
+          <Divider className='gap-3'>or</Divider>
+          <Button
+            color='secondary'
+            className='self-center text-textPrimary'
+            startIcon={<img src='/images/logos/google.png' alt='Google' width={22} />}
+            sx={{ '& .MuiButton-startIcon': { marginInlineEnd: 3 } }}
+            onClick={() => signIn('google')}
+          >
+            Sign in with Google
+          </Button>
         </div>
       </div>
     </div>

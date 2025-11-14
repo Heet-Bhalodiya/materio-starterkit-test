@@ -34,8 +34,8 @@ const data: dataTypes[] = [
     time: '2hr 10min',
     progressColor: 'action',
     progressColorVariant: 'hover',
-    progressData: '39.7%',
-    widthClass: 'is-[39.7%]'
+    progressData: '38.7%',
+    widthClass: 'is-[38.7%]'
   },
   {
     icon: 'ri-download-2-line',
@@ -43,8 +43,8 @@ const data: dataTypes[] = [
     time: '3hr 15min',
     progressColor: 'primary',
     progressColorVariant: 'main',
-    progressData: '28.3%',
-    widthClass: 'is-[28.3%]'
+    progressData: '27.3%',
+    widthClass: 'is-[27.3%]'
   },
   {
     icon: 'ri-upload-line',
@@ -61,8 +61,8 @@ const data: dataTypes[] = [
     time: '5hr 19min',
     progressColor: 'SnackbarContent',
     progressColorVariant: 'bg',
-    progressData: '14.6%',
-    widthClass: 'is-[14.6%]'
+    progressData: '16.6%',
+    widthClass: 'is-[16.6%]'
   }
 ]
 

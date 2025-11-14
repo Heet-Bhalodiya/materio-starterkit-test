@@ -12,7 +12,6 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -23,18 +22,20 @@ import Logo from '@components/layout/shared/Logo'
 
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'
+import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
 
-const ForgotPasswordV1 = ({ mode }: { mode: Mode }) => {
+const ForgotPasswordV1 = () => {
   // Vars
   const darkImg = '/images/pages/auth-v1-mask-dark.png'
   const lightImg = '/images/pages/auth-v1-mask-light.png'
 
   // Hooks
   const { lang: locale } = useParams()
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
+  const { settings } = useSettings()
+  const authBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   return (
     <div className='flex flex-col justify-center items-center min-bs-[100dvh] relative p-6'>

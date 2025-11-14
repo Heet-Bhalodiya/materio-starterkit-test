@@ -8,23 +8,22 @@ import { useTheme } from '@mui/material/styles'
 import classnames from 'classnames'
 
 // Type Imports
-import type { Mode } from '@core/types'
 
 // Component Imports
 import CustomIconButton from '@core/components/mui/IconButton'
 
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'
+import { useSettings } from '@core/hooks/useSettings'
 
 type Props = {
-  mode: Mode
   searchValue: string
   setSearchValue: (value: string) => void
 }
 
 const MyCourseHeader = (props: Props) => {
   // Props
-  const { mode, searchValue, setSearchValue } = props
+  const { searchValue, setSearchValue } = props
 
   // Vars
   const lightIllustration = '/images/apps/academy/hand-with-bulb-light.png'
@@ -32,7 +31,8 @@ const MyCourseHeader = (props: Props) => {
 
   // Hooks
   const theme = useTheme()
-  const leftIllustration = useImageVariant(mode, lightIllustration, darkIllustration)
+  const { settings } = useSettings()
+  const leftIllustration = useImageVariant(settings.mode || 'light', lightIllustration, darkIllustration)
 
   return (
     <Card className='relative flex justify-center'>

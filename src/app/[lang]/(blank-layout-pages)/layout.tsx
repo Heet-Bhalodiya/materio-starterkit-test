@@ -9,9 +9,6 @@ import BlankLayout from '@layouts/BlankLayout'
 // Config Imports
 import { i18n } from '@configs/i18n'
 
-// Util Imports
-import { getSystemMode } from '@core/utils/serverHelpers'
-
 type Props = ChildrenType & {
   params: Promise<{ lang: string }>
 }
@@ -25,11 +22,10 @@ const Layout = async (props: Props) => {
 
   // Vars
   const direction = i18n.langDirection[lang]
-  const systemMode = await getSystemMode()
 
   return (
     <Providers direction={direction}>
-      <BlankLayout systemMode={systemMode}>{children}</BlankLayout>
+      <BlankLayout>{children}</BlankLayout>
     </Providers>
   )
 }

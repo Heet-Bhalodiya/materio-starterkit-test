@@ -4,7 +4,6 @@
 import { useEffect } from 'react'
 
 // Type Imports
-import type { Mode } from '@core/types'
 
 // Component Imports
 import HeroSection from './HeroSection'
@@ -18,7 +17,7 @@ import GetStarted from './GetStarted'
 import ContactUs from './ContactUs'
 import { useSettings } from '@core/hooks/useSettings'
 
-const LandingPageWrapper = ({ mode }: { mode: Mode }) => {
+const LandingPageWrapper = () => {
   // Hooks
   const { updatePageSettings } = useSettings()
 
@@ -32,7 +31,7 @@ const LandingPageWrapper = ({ mode }: { mode: Mode }) => {
 
   return (
     <>
-      <HeroSection mode={mode} />
+      <HeroSection />
       <UsefulFeature />
       <CustomerReviews />
       <OurTeam />

@@ -14,16 +14,16 @@ import type { Theme } from '@mui/material/styles'
 import classnames from 'classnames'
 
 // Type Imports
-import type { Mode } from '@core/types'
 
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'
+import { useSettings } from '@core/hooks/useSettings'
 
 // Styles Imports
 import styles from './styles.module.css'
 import frontCommonStyles from '@views/front-pages/styles.module.css'
 
-const HeroSection = ({ mode }: { mode: Mode }) => {
+const HeroSection = () => {
   // States
   const [dashboardPosition, setDashboardPosition] = useState({ x: 0, y: 0 })
   const [elementsPosition, setElementsPosition] = useState({ x: 0, y: 0 })
@@ -37,9 +37,10 @@ const HeroSection = ({ mode }: { mode: Mode }) => {
   const heroSectionBgDark = '/images/front-pages/landing-page/hero-bg-dark.png'
 
   // Hooks
-  const dashboardImage = useImageVariant(mode, dashboardImageLight, dashboardImageDark)
-  const elementsImage = useImageVariant(mode, elementsImageLight, elementsImageDark)
-  const heroSectionBg = useImageVariant(mode, heroSectionBgLight, heroSectionBgDark)
+  const { settings } = useSettings()
+  const dashboardImage = useImageVariant(settings.mode || 'light', dashboardImageLight, dashboardImageDark)
+  const elementsImage = useImageVariant(settings.mode || 'light', elementsImageLight, elementsImageDark)
+  const heroSectionBg = useImageVariant(settings.mode || 'light', heroSectionBgLight, heroSectionBgDark)
   const isAboveLgScreen = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'))
 
   useEffect(() => {

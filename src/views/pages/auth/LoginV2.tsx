@@ -21,7 +21,6 @@ import Divider from '@mui/material/Divider'
 import classnames from 'classnames'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -38,7 +37,7 @@ import { useSettings } from '@core/hooks/useSettings'
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
 
-const LoginV2 = ({ mode }: { mode: Mode }) => {
+const LoginV2 = () => {
   // States
   const [isPasswordShown, setIsPasswordShown] = useState(false)
 
@@ -53,10 +52,10 @@ const LoginV2 = ({ mode }: { mode: Mode }) => {
   // Hooks
   const { lang: locale } = useParams()
   const { settings } = useSettings()
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
+  const authBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   const characterIllustration = useImageVariant(
-    mode,
+    settings.mode || 'light',
     lightIllustration,
     darkIllustration,
     borderedLightIllustration,
@@ -155,7 +154,7 @@ const LoginV2 = ({ mode }: { mode: Mode }) => {
               <IconButton size='small' className='text-twitter'>
                 <i className='ri-twitter-fill' />
               </IconButton>
-              <IconButton size='small' className='text-github'>
+              <IconButton size='small' className='text-textPrimary'>
                 <i className='ri-github-fill' />
               </IconButton>
               <IconButton size='small' className='text-googlePlus'>

@@ -5,23 +5,22 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 
-// Type Imports
-import type { Mode } from '@core/types'
-
 // Component Imports
 import Form from '@components/Form'
 import Illustrations from '@components/Illustrations'
 
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'
+import { useSettings } from '@core/hooks/useSettings'
 
-const ComingSoon = ({ mode }: { mode: Mode }) => {
+const ComingSoon = () => {
   // Vars
   const darkImg = '/images/pages/misc-mask-dark.png'
   const lightImg = '/images/pages/misc-mask-light.png'
 
   // Hooks
-  const miscBackground = useImageVariant(mode, lightImg, darkImg)
+  const { settings } = useSettings()
+  const miscBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   return (
     <>

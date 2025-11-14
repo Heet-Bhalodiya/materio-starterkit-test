@@ -50,9 +50,7 @@ const ToastifyWrapper = styled(Box)<BoxProps>(({ theme }) => {
         marginBlockEnd: theme.spacing(4)
       }),
       '&:not(.custom-toast)': {
-        '& .Toastify__toast-body': {
-          color: 'var(--mui-palette-text-primary)'
-        },
+        color: 'var(--mui-palette-text-primary)',
         '&.Toastify__toast--success': {
           '& .Toastify__toast-icon svg': {
             fill: 'var(--mui-palette-success-main)'

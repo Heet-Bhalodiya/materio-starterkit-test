@@ -21,7 +21,6 @@ import Divider from '@mui/material/Divider'
 import classnames from 'classnames'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -35,7 +34,7 @@ import { useSettings } from '@core/hooks/useSettings'
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
 
-const RegisterV2 = ({ mode }: { mode: Mode }) => {
+const RegisterV2 = () => {
   // States
   const [isPasswordShown, setIsPasswordShown] = useState(false)
 
@@ -49,11 +48,11 @@ const RegisterV2 = ({ mode }: { mode: Mode }) => {
 
   // Hooks
   const { lang: locale } = useParams()
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
   const { settings } = useSettings()
+  const authBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   const characterIllustration = useImageVariant(
-    mode,
+    settings.mode || 'light',
     lightIllustration,
     darkIllustration,
     borderedLightIllustration,

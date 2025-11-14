@@ -11,28 +11,19 @@ import ReduxProvider from '@/redux-store/ReduxProvider'
 // Styled Component Imports
 import AppReactToastify from '@/libs/styles/AppReactToastify'
 
-// Util Imports
-import { getDemoName, getMode, getSettingsFromCookie, getSystemMode } from '@core/utils/serverHelpers'
-
 type Props = ChildrenType & {
   direction: Direction
 }
 
-const Providers = async (props: Props) => {
+const Providers = (props: Props) => {
   // Props
   const { children, direction } = props
-
-  // Vars
-  const mode = await getMode()
-  const settingsCookie = await getSettingsFromCookie()
-  const demoName = await getDemoName()
-const systemMode = await getSystemMode()
 
   return (
     <NextAuthProvider basePath={process.env.NEXTAUTH_BASEPATH}>
       <VerticalNavProvider>
-        <SettingsProvider settingsCookie={settingsCookie} mode={mode} demoName={demoName}>
-          <ThemeProvider direction={direction} systemMode={systemMode} demoName={demoName}>
+        <SettingsProvider settingsCookie={null} mode={undefined}>
+          <ThemeProvider direction={direction} systemMode='light'>
             <ReduxProvider>{children}</ReduxProvider>
             <AppReactToastify direction={direction} hideProgressBar />
           </ThemeProvider>

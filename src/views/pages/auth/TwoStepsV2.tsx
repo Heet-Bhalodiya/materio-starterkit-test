@@ -17,7 +17,6 @@ import type { SlotProps } from 'input-otp'
 import classnames from 'classnames'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -54,7 +53,7 @@ const FakeCaret = () => {
   )
 }
 
-const TwoStepsV2 = ({ mode }: { mode: Mode }) => {
+const TwoStepsV2 = () => {
   // States
   const [otp, setOtp] = useState<string | null>(null)
 
@@ -69,10 +68,10 @@ const TwoStepsV2 = ({ mode }: { mode: Mode }) => {
   // Hooks
   const { lang: locale } = useParams()
   const { settings } = useSettings()
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
+  const authBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   const characterIllustration = useImageVariant(
-    mode,
+    settings.mode || 'light',
     lightIllustration,
     darkIllustration,
     borderedLightIllustration,

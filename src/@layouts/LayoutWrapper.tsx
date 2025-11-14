@@ -3,27 +3,23 @@
 // React Imports
 import type { ReactElement } from 'react'
 
-// Type Imports
-import type { SystemMode } from '@core/types'
-
 // Hook Imports
 import { useSettings } from '@core/hooks/useSettings'
 import useLayoutInit from '@core/hooks/useLayoutInit'
 
 type LayoutWrapperProps = {
-  systemMode: SystemMode
   verticalLayout: ReactElement
   horizontalLayout: ReactElement
 }
 
 const LayoutWrapper = (props: LayoutWrapperProps) => {
   // Props
-  const { systemMode, verticalLayout, horizontalLayout } = props
+  const { verticalLayout, horizontalLayout } = props
 
   // Hooks
   const { settings } = useSettings()
 
-  useLayoutInit(systemMode)
+  useLayoutInit('light')
 
   // Return the layout based on the layout context
   return (

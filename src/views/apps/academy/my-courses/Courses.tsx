@@ -135,8 +135,8 @@ const Courses = (props: Props) => {
                     <div className='flex items-center justify-between'>
                       <Chip label={item.tags} variant='tonal' size='small' color={chipColor[item.tags].color} />
                       <div className='flex items-start'>
-                        <Typography className='font-medium mie-1'>{item.rating}</Typography>
-                        <i className='ri-star-fill text-warning mie-2' />
+                        <Typography className='font-medium'>{item.rating}</Typography>
+                        <i className='ri-star-fill text-warning mis-1 mie-2' />
                         <Typography>{`(${item.ratingCount})`}</Typography>
                       </div>
                     </div>

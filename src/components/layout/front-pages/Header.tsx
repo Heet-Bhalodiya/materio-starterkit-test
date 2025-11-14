@@ -16,14 +16,14 @@ import type { Theme } from '@mui/material/styles'
 // Third-party Imports
 import classnames from 'classnames'
 
-// Type Imports
-import type { Mode } from '@core/types'
-
 // Component Imports
 import Logo from '@components/layout/shared/Logo'
 import ModeDropdown from '@components/layout/shared/ModeDropdown'
 import FrontMenu from './FrontMenu'
 import CustomIconButton from '@core/components/mui/IconButton'
+
+// Hook Imports
+import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
@@ -31,12 +31,13 @@ import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
 // Styles Imports
 import styles from './styles.module.css'
 
-const Header = ({ mode }: { mode: Mode }) => {
+const Header = () => {
   // States
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   // Hooks
   const isBelowLgScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+  const { settings } = useSettings()
 
   // Detect window scroll
   const trigger = useScrollTrigger({
@@ -56,14 +57,14 @@ const Header = ({ mode }: { mode: Mode }) => {
               <Link href='/front-pages/landing-page'>
                 <Logo />
               </Link>
-              <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
+              <FrontMenu mode={settings.mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
             </div>
           ) : (
             <div className='flex items-center gap-10'>
               <Link href='/front-pages/landing-page'>
                 <Logo />
               </Link>
-              <FrontMenu mode={mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
+              <FrontMenu mode={settings.mode} isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
             </div>
           )}
           <div className='flex items-center gap-2 sm:gap-4'>

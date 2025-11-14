@@ -17,7 +17,6 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Button from '@mui/material/Button'
 
 // Type Imports
-import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -27,11 +26,12 @@ import Illustrations from '@components/Illustrations'
 
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'
+import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
 
-const ResetPasswordV1 = ({ mode }: { mode: Mode }) => {
+const ResetPasswordV1 = () => {
   // States
   const [isPasswordShown, setIsPasswordShown] = useState(false)
   const [isConfirmPasswordShown, setIsConfirmPasswordShown] = useState(false)
@@ -42,7 +42,8 @@ const ResetPasswordV1 = ({ mode }: { mode: Mode }) => {
 
   // Hooks
   const { lang: locale } = useParams()
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
+  const { settings } = useSettings()
+  const authBackground = useImageVariant(settings.mode || 'light', lightImg, darkImg)
 
   const handleClickShowPassword = () => setIsPasswordShown(show => !show)
 

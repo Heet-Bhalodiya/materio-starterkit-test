@@ -267,7 +267,9 @@ const MailDetails = (props: Props) => {
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        underline: false
+      }),
       Placeholder.configure({
         placeholder: 'Write your message...'
       }),

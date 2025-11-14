@@ -165,7 +165,9 @@ const ComposeMail = (props: Props) => {
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        underline: false
+      }),
       Placeholder.configure({
         placeholder: 'Message'
       }),

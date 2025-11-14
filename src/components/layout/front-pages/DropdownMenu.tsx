@@ -37,7 +37,7 @@ import CustomAvatar from '@core/components/mui/Avatar'
 import { useImageVariant } from '@core/hooks/useImageVariant'
 
 type Props = {
-  mode: Mode
+  mode?: Mode
   isBelowLgScreen: boolean
   isDrawerOpen: boolean
   setIsDrawerOpen: (open: boolean) => void
@@ -195,7 +195,7 @@ const DropdownMenu = (props: Props) => {
 
   // hooks
   const pathname = usePathname()
-  const dropdownImage = useImageVariant(mode, dropdownImageLight, dropdownImageDark)
+  const dropdownImage = useImageVariant(mode || 'light', dropdownImageLight, dropdownImageDark)
 
   const { y, refs, floatingStyles, context } = useFloating<HTMLElement>({
     placement: 'bottom',

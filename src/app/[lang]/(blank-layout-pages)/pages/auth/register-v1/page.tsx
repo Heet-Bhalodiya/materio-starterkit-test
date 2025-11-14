@@ -1,14 +1,8 @@
 // Component Imports
 import RegisterV1 from '@views/pages/auth/RegisterV1'
 
-// Server Action Imports
-import { getServerMode } from '@core/utils/serverHelpers'
-
-const RegisterV1Page = async () => {
-  // Vars
-  const mode = await getServerMode()
-
-  return <RegisterV1 mode={mode} />
+const RegisterV1Page = () => {
+  return <RegisterV1 />
 }
 
 export default RegisterV1Page

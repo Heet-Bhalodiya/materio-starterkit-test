@@ -27,7 +27,7 @@ import { useIntersection } from '@/hooks/useIntersection'
 import DropdownMenu from './DropdownMenu'
 
 type Props = {
-  mode: Mode
+  mode?: Mode
   isDrawerOpen: boolean
   setIsDrawerOpen: (open: boolean) => void
 }
